@@ -17,12 +17,12 @@ public class Genre {
 
 	@OneToMany(mappedBy = "genre")
 	private Collection<Book> books;
-
+	
 	@SuppressWarnings("unused")
 	private Genre() {
-
+		
 	}
-
+	
 	public Genre(String genre) {
 		this.genre = genre;
 	}
@@ -49,16 +49,12 @@ public class Genre {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Genre other = (Genre) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
+		}
+		return id == ((Genre) obj).id;
+	}	
 }

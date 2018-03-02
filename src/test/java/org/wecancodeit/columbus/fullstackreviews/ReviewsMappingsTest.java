@@ -93,7 +93,14 @@ public class ReviewsMappingsTest {
 		entityManager.flush();
 		entityManager.clear();
 		
-		assertThat(book1.getGenre(), is(genre));
+		genre = genreRepo.findOne(genreId);
+		assertThat(genre.getBooks(), containsInAnyOrder(book1, book2));
+	}
+	
+	@Test
+	public void bookShouldHaveMultipleTags() {
+		Tag fun = tagRepo.save(new Tag("Fun"));
+		
 	}
 	
 }
