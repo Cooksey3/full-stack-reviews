@@ -32,7 +32,7 @@ public class ReviewsMappingsTest {
 
 	@Test
 	public void shouldSaveAndLoadBook() {
-		Book book = new Book("LOTR", null);
+		Book book = new Book("LOTR");
 		book = bookRepo.save(book);
 
 		long bookId = book.getId();
@@ -103,6 +103,13 @@ public class ReviewsMappingsTest {
 		Tag boring = tagRepo.save(new Tag("Boring"));
 		
 		Book book = bookRepo.save(new Book("LOTR", fun, boring));
+		long lotrId = book.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		book = bookRepo.findOne(lotrId);
+		assertThat(book.getTags(), containsInAnyOrder(fun, boring));
 	}
 	
 }
