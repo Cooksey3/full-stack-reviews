@@ -112,4 +112,20 @@ public class ReviewsMappingsTest {
 		assertThat(book.getTags(), containsInAnyOrder(fun, boring));
 	}
 	
+	@Test
+	public void shouldSaveTagToBookRelationship() {
+		Tag tag = tagRepo.save(new Tag("Fiction"));
+		long tagId = tag.getId();
+		
+		Book book1 = bookRepo.save(new Book("LOTR", tag));
+		
+		Book book2 = bookRepo.save(new Book("The Hobbit", tag));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		tag = tagRepo.findOne(tagId);
+		assertThat(tag.getBooks(), containsInAnyOrder(book1, book2));
+	}
+	
 }

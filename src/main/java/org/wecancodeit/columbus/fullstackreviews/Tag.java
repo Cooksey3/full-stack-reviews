@@ -17,12 +17,12 @@ public class Tag {
 
 	@SuppressWarnings("unused")
 	private Tag() {
-		
+
 	}
-	
+
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Book> books;
-	
+
 	public Tag(String tag) {
 		this.tag = tag;
 	}
@@ -50,5 +50,9 @@ public class Tag {
 		}
 		return id == ((Tag) obj).id;
 	}
-	
+
+	public Collection<Book> getBooks() {
+		return books;
+	}
+
 }
