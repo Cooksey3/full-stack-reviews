@@ -1,5 +1,7 @@
 package org.wecancodeit.columbus.fullstackreviews;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -30,7 +32,7 @@ public class ReviewsMappingsTest {
 
 	@Test
 	public void shouldSaveAndLoadBook() {
-		Book book = new Book("LOTR");
+		Book book = new Book("LOTR", null);
 		book = bookRepo.save(book);
 
 		long bookId = book.getId();
@@ -58,8 +60,7 @@ public class ReviewsMappingsTest {
 	
 	@Test
 	public void shouldSaveAndLoadGenre() {
-		Genre genre = new Genre("Fiction");
-		genre = genreRepo.save(genre);
+		Genre genre = genreRepo.save(new Genre("Fiction"));
 		long genreId = genre.getId();
 		
 		entityManager.flush();
@@ -67,6 +68,32 @@ public class ReviewsMappingsTest {
 		
 		genre = genreRepo.findOne(genreId);
 		assertThat(genre.getGenre(), is("Fiction"));
+	}
+	
+	@Test
+	public void shouldGenerateGenreId() {
+		Genre genre = genreRepo.save(new Genre("Fiction"));
+		long genreId = genre.getId();
+		
+		entityManager.flush();
+		
+		genre = genreRepo.findOne(genreId);
+		assertThat(genreId, is(greaterThan(0L)));
+	}
+	
+	@Test
+	public void shouldSaveCategoryToBookRelationship() {
+		Genre genre = genreRepo.save(new Genre("Fiction"));
+		long genreId = genre.getId();
+		
+		Book book1 = bookRepo.save(new Book("LOTR", genre));
+		
+		Book book2 = bookRepo.save(new Book("The Hobbit", genre));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		assertThat(book1.getGenre(), is(genre));
 	}
 	
 }
