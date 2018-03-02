@@ -100,7 +100,9 @@ public class ReviewsMappingsTest {
 	@Test
 	public void bookShouldHaveMultipleTags() {
 		Tag fun = tagRepo.save(new Tag("Fun"));
+		Tag boring = tagRepo.save(new Tag("Boring"));
 		
+		Book book = bookRepo.save(new Book("LOTR", fun, boring));
 	}
 	
 }
