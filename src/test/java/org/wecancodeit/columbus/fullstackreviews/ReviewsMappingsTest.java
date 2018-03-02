@@ -22,7 +22,11 @@ public class ReviewsMappingsTest {
 	@Resource
 	private BookRepository bookRepo;
 
-	private GenreRepository genreRepo;
+//	@Resource
+//	private GenreRepository genreRepo;
+
+	@Resource
+	private TagRepository tagRepo;
 
 	@Test
 	public void shouldSaveAndLoadBook() {
@@ -41,7 +45,15 @@ public class ReviewsMappingsTest {
 	
 	@Test
 	public void shouldSaveAndLoadTags() {
-		Tag tag = tagRepo.save(new Tag("Fun read"));
+		Tag tag = new Tag("Fun read");
+		tag = tagRepo.save(tag);
+		long tagId = tag.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		tag = tagRepo.findOne(tagId);
+		assertThat(tag.getTag(), is("Fun read"));
 	}
 	
 //	@Test

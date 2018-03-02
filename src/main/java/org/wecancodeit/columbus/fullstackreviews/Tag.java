@@ -5,26 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Book {
+public class Tag {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	private String title;
-	
-	private Book() {
+	private String tag;
+
+	private Tag() {
+		
 	}
 	
-	public Book(String title) {
-		this.title = title;
+	public Tag(String tag) {
+		this.tag = tag;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getTag() {
+		return tag;
 	}
 
 }
