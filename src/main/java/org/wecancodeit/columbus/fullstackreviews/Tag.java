@@ -12,6 +12,7 @@ public class Tag {
 	private long id;
 	private String tag;
 
+	@SuppressWarnings("unused")
 	private Tag() {
 		
 	}

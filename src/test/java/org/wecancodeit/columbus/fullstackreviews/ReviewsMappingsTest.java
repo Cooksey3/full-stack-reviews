@@ -22,8 +22,8 @@ public class ReviewsMappingsTest {
 	@Resource
 	private BookRepository bookRepo;
 
-//	@Resource
-//	private GenreRepository genreRepo;
+	@Resource
+	private GenreRepository genreRepo;
 
 	@Resource
 	private TagRepository tagRepo;
@@ -56,12 +56,17 @@ public class ReviewsMappingsTest {
 		assertThat(tag.getTag(), is("Fun read"));
 	}
 	
-//	@Test
-//	public void shouldSaveAndLoadCategore() {
-//		Genre fiction = new Genre("Fiction");
-//		fiction = genreRepo.save(fiction);
-//		
-//	}
-	
+	@Test
+	public void shouldSaveAndLoadGenre() {
+		Genre genre = new Genre("Fiction");
+		genre = genreRepo.save(genre);
+		long genreId = genre.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		genre = genreRepo.findOne(genreId);
+		assertThat(genre.getGenre(), is("Fiction"));
+	}
 	
 }

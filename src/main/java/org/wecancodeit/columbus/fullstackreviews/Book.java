@@ -12,6 +12,7 @@ public class Book {
 	private long id;
 	private String title;
 	
+	@SuppressWarnings("unused")
 	private Book() {
 	}
 	
