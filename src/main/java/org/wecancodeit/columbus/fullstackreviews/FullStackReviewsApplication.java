@@ -9,4 +9,5 @@ public class FullStackReviewsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FullStackReviewsApplication.class, args);
 	}
+
 }
