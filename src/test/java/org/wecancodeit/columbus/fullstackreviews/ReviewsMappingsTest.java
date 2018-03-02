@@ -7,12 +7,13 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@DataJpaTest
 public class ReviewsMappingsTest {
 
 	@Resource
@@ -20,6 +21,8 @@ public class ReviewsMappingsTest {
 
 	@Resource
 	private BookRepository bookRepo;
+
+	private GenreRepository genreRepo;
 
 	@Test
 	public void shouldSaveAndLoadBook() {
@@ -35,4 +38,18 @@ public class ReviewsMappingsTest {
 
 		assertThat(book.getTitle(), is("LOTR"));
 	}
+	
+	@Test
+	public void shouldSaveAndLoadTags() {
+		Tag tag = tagRepo.save(new Tag("Fun read"));
+	}
+	
+//	@Test
+//	public void shouldSaveAndLoadCategore() {
+//		Genre fiction = new Genre("Fiction");
+//		fiction = genreRepo.save(fiction);
+//		
+//	}
+	
+	
 }
