@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -17,6 +18,9 @@ public class Book {
 	@GeneratedValue
 	private long id;
 	private String title;
+	
+	@Lob
+	private String description;
 
 	@ManyToOne
 	private Genre genre;
@@ -46,6 +50,13 @@ public class Book {
 		this.tags = new HashSet<>(asList(tags));
 	}
 
+	public Book(String title, String description, Genre genre, Tag...tags) {
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+		this.tags = new HashSet<>(asList(tags));
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -54,6 +65,10 @@ public class Book {
 		return title;
 	}
 
+	public Collection<Tag> getTags() {
+		return tags;
+	}
+	
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
@@ -70,8 +85,12 @@ public class Book {
 		return id == ((Book) obj).id;
 	}
 
-	public Collection<Tag> getTags() {
-		return tags;
+	public String getDescription() {
+		return description;
 	}
+
+//	public String getBookInfo() {
+//		return description;
+//	}
 
 }

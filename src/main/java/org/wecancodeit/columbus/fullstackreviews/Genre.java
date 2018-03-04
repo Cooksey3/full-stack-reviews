@@ -1,6 +1,9 @@
 package org.wecancodeit.columbus.fullstackreviews;
 
+import static java.util.Arrays.asList;
+
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +28,11 @@ public class Genre {
 	
 	public Genre(String genre) {
 		this.genre = genre;
+	}
+
+	public Genre(String genre, Book...books) {
+		this.genre = genre;
+		this.books = new HashSet<>(asList(books));
 	}
 
 	public long getId() {
