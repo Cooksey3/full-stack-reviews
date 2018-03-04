@@ -21,6 +21,10 @@ public class Genre {
 	@OneToMany(mappedBy = "genre")
 	private Collection<Book> books;
 	
+	public Collection<Book> getBooks() {
+		return books;
+	}
+	
 	@SuppressWarnings("unused")
 	private Genre() {
 		
@@ -43,9 +47,6 @@ public class Genre {
 		return genre;
 	}
 
-	public Collection<Book> getBooks() {
-		return books;
-	}
 
 	@Override
 	public int hashCode() {

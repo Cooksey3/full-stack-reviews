@@ -133,17 +133,13 @@ public class ReviewsMappingsTest {
 		Tag tag2 = tagRepo.save(new Tag("Gripping"));
 		Genre genre = genreRepo.save(new Genre("Fiction"));
 		Book book = bookRepo.save(new Book("LOTR", "Good book", genre, tag1, tag2));
-		
-		long bookId = book.getId();
-		
+				
 		entityManager.flush();
 		entityManager.clear();
 		
-		book = bookRepo.findOne(bookId);
 		assertThat(book.getTags(), containsInAnyOrder(tag1, tag2));
 		assertThat(book.getGenre(), is(genre));
 		assertThat(book.getDescription(), is("Good book"));
 		assertThat(book.getTitle(), is("LOTR"));
 	}
-
 }

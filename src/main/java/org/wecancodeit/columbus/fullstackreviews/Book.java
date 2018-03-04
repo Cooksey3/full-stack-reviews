@@ -18,7 +18,7 @@ public class Book {
 	@GeneratedValue
 	private long id;
 	private String title;
-	
+
 	@Lob
 	private String description;
 
@@ -50,7 +50,7 @@ public class Book {
 		this.tags = new HashSet<>(asList(tags));
 	}
 
-	public Book(String title, String description, Genre genre, Tag...tags) {
+	public Book(String title, String description, Genre genre, Tag... tags) {
 		this.title = title;
 		this.description = description;
 		this.genre = genre;
@@ -68,7 +68,7 @@ public class Book {
 	public Collection<Tag> getTags() {
 		return tags;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return ((Long) id).hashCode();
@@ -88,9 +88,4 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
-
-//	public String getBookInfo() {
-//		return description;
-//	}
-
 }

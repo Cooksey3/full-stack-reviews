@@ -17,7 +17,6 @@ public class Tag {
 
 	@SuppressWarnings("unused")
 	private Tag() {
-
 	}
 
 	@ManyToMany(mappedBy = "tags")
