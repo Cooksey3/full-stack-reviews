@@ -22,12 +22,12 @@ public class BookReviewsPopulator implements CommandLineRunner {
 
 		Genre fiction = genreRepo.save(new Genre("Fiction"));
 		Genre nonFiction = genreRepo.save(new Genre("Non-fiction"));
-		Genre adventure = genreRepo.save(new Genre("Adventure"));
+		Tag adventure = tagRepo.save(new Tag("Adventure"));
 		Tag thriller = tagRepo.save(new Tag("Thriller"));
 		Tag action = tagRepo.save(new Tag("Action"));
 		Tag fantasy = tagRepo.save(new Tag("Fantasy"));
-		bookRepo.save(new Book("The Lord of the Rings", "A thrilling fantasy trilogy fill with peril and sacrifice",
-				fiction, action, fantasy));
+		bookRepo.save(new Book("The Lord of the Rings", "/images/lordoftherings.png", "A thrilling fantasy trilogy filled with peril and sacrifice",
+				fiction, action, fantasy, adventure));
 		bookRepo.save(new Book("Marine Sniper: 93 Confirmed Kills",
 				"The true story of America's most successful sniper", nonFiction, action, thriller));
 	}

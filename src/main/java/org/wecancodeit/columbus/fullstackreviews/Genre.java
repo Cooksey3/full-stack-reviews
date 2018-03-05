@@ -20,21 +20,21 @@ public class Genre {
 
 	@OneToMany(mappedBy = "genre")
 	private Collection<Book> books;
-	
+
 	public Collection<Book> getBooks() {
 		return books;
 	}
-	
+
 	@SuppressWarnings("unused")
 	private Genre() {
-		
+
 	}
-	
+
 	public Genre(String genre) {
 		this.genre = genre;
 	}
 
-	public Genre(String genre, Book...books) {
+	public Genre(String genre, Book... books) {
 		this.genre = genre;
 		this.books = new HashSet<>(asList(books));
 	}
@@ -46,7 +46,6 @@ public class Genre {
 	public String getGenre() {
 		return genre;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -65,5 +64,5 @@ public class Genre {
 			return false;
 		}
 		return id == ((Genre) obj).id;
-	}	
+	}
 }

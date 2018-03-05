@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+	display: grid;
+	height: 100vh;
+	grid-template-rows: 75px auto 100px;
+	grid-template-columns: repeat(2, 1fr);
+	background-color: #d3edf8;
+}
+
+.header {
+	grid-column: 1/-1;
+	background-color: #262626;
+	color: lightgray;
+	display: flex;
+	align-items: center;
+	text-indent: 10px;
+}
+
+.review-type {
+	grid-column: 1/-1;
+	display: flex;
+	flex-direction: column;
+}
+
+.genres {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.genre {
+    list-style-type: none;
+	margin-right: 10rem;
+	margin-left: 10rem;
+}
+
+#genre-heading {
+	align-self: center;
+}
+
+.footer {
+	grid-column: 1/-1;
+	background-color: #262626;
+	color: lightgray;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

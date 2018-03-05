@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Book Reviews</title>
+</head>
+
+<body>
+	<header>
+		<h1 th:text="|${tagModel.Tag} book reviews|"></h1>
+	</header>
+	
+	<ul th:each="book: ${booksModel}">
+		<li><a th:href="@{/tag(id=${tag.Id})}"
+			th:text="|${book.Title} - |"></a>
+			<p th:text="|Book: ${book.Title}|"></p></li>
+	</ul>
+	
+</body>
+</html>

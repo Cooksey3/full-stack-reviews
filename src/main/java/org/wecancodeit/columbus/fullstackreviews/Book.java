@@ -18,7 +18,8 @@ public class Book {
 	@GeneratedValue
 	private long id;
 	private String title;
-
+	private String image;
+	
 	@Lob
 	private String description;
 
@@ -57,6 +58,14 @@ public class Book {
 		this.tags = new HashSet<>(asList(tags));
 	}
 
+	public Book(String title, String image, String description, Genre genre, Tag... tags) {
+		this.title = title;
+		this.description = description;
+		this.genre = genre;
+		this.image = image;
+		this.tags = new HashSet<>(asList(tags));
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -65,6 +74,10 @@ public class Book {
 		return title;
 	}
 
+	public String getImage() {
+		return image;
+	}
+	
 	public Collection<Tag> getTags() {
 		return tags;
 	}

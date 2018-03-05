@@ -19,6 +19,10 @@ public class Tag {
 	private Tag() {
 	}
 
+	public Collection<Book> getBooks() {
+		return books;
+	}
+
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Book> books;
 
@@ -48,10 +52,6 @@ public class Tag {
 			return false;
 		}
 		return id == ((Tag) obj).id;
-	}
-
-	public Collection<Book> getBooks() {
-		return books;
 	}
 
 }

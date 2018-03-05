@@ -19,11 +19,11 @@ public class BookReviewsController {
 	@Resource
 	TagRepository tagRepo;
 	
-	@RequestMapping("/genres")
+	@RequestMapping("/home")
 	public String getAllGenres(Model model) {
 		model.addAttribute("genresModel", genreRepo.findAll());
 		model.addAttribute("tagsModel", tagRepo.findAll());
-		return "genresView";
+		return "homeView";
 	}
 	
 	@RequestMapping("/genre")
@@ -34,6 +34,14 @@ public class BookReviewsController {
 		return "genreView";
 	}
 
+	@RequestMapping("/tag")
+	public String getTag(@RequestParam Long id, Model model) {
+		Tag tag = tagRepo.findOne(id);
+//		model.addAttribute("tagsModel", tagRepo.findByBook_id(id));
+		model.addAttribute("tagModel", tag);
+		return "tagView";
+	}
+	
 	@RequestMapping("/book")
 	public String getOneBook(@RequestParam Long id, Model model) {
 		model.addAttribute("bookModel", bookRepo.findOne(id));
