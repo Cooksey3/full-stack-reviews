@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Book Reviews</title>
+<title>Genres</title>
 </head>
 
 <body>
@@ -11,11 +11,20 @@
 		<h1>Book Reviews</h1>
 	</header>
 
-	<ul th:each="book: ${books}">
-		<li><a th:href="@{/book(id=${book.Id})}"
-			th:text="|${book.Title} - |"></a>
-			<p th:text="|Director: ${book.Genre}|"></p></li>
+	<h2>Genre</h2>	
+	<ul th:each="genre: ${genresModel}">
+		<li><a th:href="@{/genre(id=${genre.Id})}"
+			th:text="|${genre.Genre}|"></a>
+			<p th:text="|Genre: ${genre.Genre}|"></p></li>
 	</ul>
+
+	<h2>Tags</h2>
+	<ul th:each="tag: ${tagsModel}">
+		<li><a th:href="@{/tag(id=${tag.Id})}"
+			th:text="|${tag.Tag}|"></a>
+			<p th:text="|Tag: ${tag.Tag}|"></p></li>
+	</ul>
+
 
 </body>
 </html>

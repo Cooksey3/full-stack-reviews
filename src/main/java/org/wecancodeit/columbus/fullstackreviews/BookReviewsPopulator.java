@@ -22,6 +22,7 @@ public class BookReviewsPopulator implements CommandLineRunner {
 
 		Genre fiction = genreRepo.save(new Genre("Fiction"));
 		Genre nonFiction = genreRepo.save(new Genre("Non-fiction"));
+		Genre adventure = genreRepo.save(new Genre("Adventure"));
 		Tag thriller = tagRepo.save(new Tag("Thriller"));
 		Tag action = tagRepo.save(new Tag("Action"));
 		Tag fantasy = tagRepo.save(new Tag("Fantasy"));
