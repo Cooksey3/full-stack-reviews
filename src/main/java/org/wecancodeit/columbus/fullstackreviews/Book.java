@@ -19,7 +19,7 @@ public class Book {
 	private long id;
 	private String title;
 	private String image;
-	
+
 	@Lob
 	private String description;
 
@@ -65,7 +65,7 @@ public class Book {
 		this.image = image;
 		this.tags = new HashSet<>(asList(tags));
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -77,7 +77,7 @@ public class Book {
 	public String getImage() {
 		return image;
 	}
-	
+
 	public Collection<Tag> getTags() {
 		return tags;
 	}
