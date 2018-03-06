@@ -1,21 +1,27 @@
-
-/*
-body{
-	background: radial-gradient(white, lightgray, gray);
+.container {
+	background-color: #d3edf8;
 }
 
-.categories{
-	border: 5px solid black;
+header {
+	background-color: #262626;
+	color: lightgray;
+}
+
+.card {
+	background-color: #262626;
+	color: lightgrey;
+	border-radius: 5px;
+}
+
+.review-info {
 	list-style-type: none;
-	font-size: 80px;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.reviewed_books_list{
-	
-	font-size: 40px;
+#image {
+	border-radius: 5px;
 }
 
-.listed_stuff{
-	list-style-type: none;
-}*/
+footer {
+	background-color: #262626;
+	color: lightgray;
+}
