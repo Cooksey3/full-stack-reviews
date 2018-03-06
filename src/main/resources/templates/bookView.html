@@ -3,22 +3,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Movie</title>
+	<title>Book</title>
+
+	<link rel="stylesheet" href="./css/layout.css"></link>
+    <link rel="stylesheet" href="./css/style.css"></link>
+
 </head>
 
 <body>
+	<div class="container">
+		<header>
+			<h1 th:text="${bookModel.Title}"></h1>
+		</header>
 
-	<h1 th:text="${bookModel.Title}"></h1>
-
-	<div th:each="book: ${bookModel}">
-		<img th:src="${book.image}" style="width: 304px; height: 228px"></img>
-		<ul>
-			<li><p th:text="|Title: ${book.Title}|"></p></li>
-			<li><p th:text="|Reviewer's Opinion: ${book.description}|"></p></li>
-			
-		</ul>
-		<a href="http://localhost:8080/home">Return Home</a>
+		<div class="book" th:each="book: ${bookModel}">
+			<div class="card">
+				<img id="image" th:src="${book.image}"></img>
+				<ul class="review-info">
+					<li id="list-item1"><p th:text="|${book.description}|"></p></li>
+				</ul>
+			</div>
+			<a id="home" href="http://localhost:8080/home"><button type="button">Return Home</button></a>
+		</div>
+		<footer>
+			<p>Copyright</p>
+		</footer>
 	</div>
-
 </body>
 </html>
