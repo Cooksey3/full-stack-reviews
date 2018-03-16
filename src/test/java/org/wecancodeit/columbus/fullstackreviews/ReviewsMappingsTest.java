@@ -39,7 +39,7 @@ public class ReviewsMappingsTest {
 		entityManager.flush();
 		entityManager.clear();
 
-		book = bookRepo.findOne(bookId);
+//		book = bookRepo.findOne(bookId);
 
 		assertThat(book.getTitle(), is("LOTR"));
 	}

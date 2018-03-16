@@ -31,6 +31,8 @@ public class BookReviewsPopulator implements CommandLineRunner {
 				fiction, action, fantasy, adventure));
 		bookRepo.save(new Book("Marine Sniper: 93 Confirmed Kills", "/images/marinesniper.png",
 				"The true story of America's deadliest sniper during the Vietnam War", nonFiction, action, thriller));
+		bookRepo.save(new Book("The Harry Potter Series", "/images/harrypotter.png",
+				"Great series. Rowling does a fantastic job of creating a fantasy world with remarkable consistency. The characters are well developed, wich great tension throughout.", fiction, action, fantasy));
 	}
 
 }
