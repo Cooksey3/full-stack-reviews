@@ -53,5 +53,4 @@ public class Tag {
 		}
 		return id == ((Tag) obj).id;
 	}
-
 }

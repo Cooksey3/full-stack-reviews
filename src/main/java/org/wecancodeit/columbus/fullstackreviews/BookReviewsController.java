@@ -26,24 +26,31 @@ public class BookReviewsController {
 		return "homeView";
 	}
 
+	@RequestMapping(value = "tags")
+	public String getAllTags(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return "tagsView";
+	}
+	
+	@RequestMapping("/book")
+	public String getOneBook(@RequestParam Long id, Model model) {
+		model.addAttribute("bookModel", bookRepo.findOne(id));
+		return "bookView";
+	}
+	
+	@RequestMapping("/tag")
+	public String getOneTag(@RequestParam Long id, Model model) {
+		Tag tag = tagRepo.findOne(id);
+		model.addAttribute("booksModel", bookRepo.findByTags_id(id));
+		model.addAttribute("tagModel", tag);
+		return "tagView";
+	}
+
 	@RequestMapping("/genre")
 	public String getOneGenre(@RequestParam Long id, Model model) {
 		Genre genre = genreRepo.findOne(id);
 		model.addAttribute("booksModel", bookRepo.findByGenre_id(id));
 		model.addAttribute("genreModel", genre);
 		return "genreView";
-	}
-
-	@RequestMapping("/tag")
-	public String getTag(@RequestParam Long id, Model model) {
-		Tag tag = tagRepo.findOne(id);
-		model.addAttribute("tagModel", tag);
-		return "tagView";
-	}
-
-	@RequestMapping("/book")
-	public String getOneBook(@RequestParam Long id, Model model) {
-		model.addAttribute("bookModel", bookRepo.findOne(id));
-		return "bookView";
 	}
 }

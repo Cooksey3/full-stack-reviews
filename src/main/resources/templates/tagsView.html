@@ -13,13 +13,14 @@
 <body>
 	<div class="container">
 		<header>
-			<h1 th:text="|${tagModel.Tag} book reviews|"></h1>
+			<h1>Tags</h1>
 		</header>
 		<section>
-			<ul th:each="book: ${booksModel}">
-				<li><a th:href="@{/book(id=${book.Id})}"
-					th:text="|${book.Title}|"></a></li>
-			</ul>
+		<ul th:each="tag: ${tags}">
+			<li><a th:href="@{/tag(id=${tag.id})}"
+			 th:text="|${tag.tag}|"></a>
+			</li>
+		</ul>
 		</section>
 		<footer>
 			<p>Copyright ©1985</p>
@@ -27,3 +28,4 @@
 	</div>
 </body>
 </html>
+
