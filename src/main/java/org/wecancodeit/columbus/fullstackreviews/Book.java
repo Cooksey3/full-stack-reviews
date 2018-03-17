@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -23,6 +24,13 @@ public class Book {
 	@Lob
 	private String description;
 
+	@OneToMany(mappedBy = "book")
+	private Collection<Comment> comments;
+
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+	
 	@ManyToOne
 	private Genre genre;
 
@@ -32,7 +40,7 @@ public class Book {
 	@SuppressWarnings("unused")
 	private Book() {
 	}
-
+	
 	public Genre getGenre() {
 		return genre;
 	}
@@ -101,4 +109,9 @@ public class Book {
 	public String getDescription() {
 		return description;
 	}
+
+	public void removeTag(Tag tag) {
+		tags.remove(tag);
+	}
+
 }

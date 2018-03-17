@@ -23,8 +23,24 @@
 					<li id="list-item1"><p th:text="|${book.description}|"></p></li>
 				</ul>
 			</div>
-			<a id="home" href="http://localhost:8080/home"><button
-					type="button">Return Home</button></a>
+			<ul th:each="singleTag: ${bookModel.tags}">
+				<li><a th:href="@{/tag(id=${singleTag.id})}"
+					th:text="|${singleTag.tag}|"></a>
+					<form method="POST">
+						<button th:value="${singleTag.id}" name="id"
+							th:formaction="@{/add-comment}">X</button>
+					</form></li>
+			</ul>
+			<div>
+				<form method="POST">
+					<label>Comment:</label>
+					<input type="text" name="comment"></input>
+					<input type="hidden" name="bookId" th:value="${book.id}"></input>
+					<button name="save" th:formaction="@{/add-comment}">Save</button>
+				</form>
+				<a id="home" href="http://localhost:8080/home"><button
+						type="button">Return Home</button></a>
+			</div>
 		</div>
 		<footer>
 			<p>Copyright ©Forever</p>

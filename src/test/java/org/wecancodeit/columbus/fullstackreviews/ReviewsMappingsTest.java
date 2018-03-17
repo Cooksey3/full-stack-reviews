@@ -2,7 +2,9 @@ package org.wecancodeit.columbus.fullstackreviews;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
@@ -20,6 +22,9 @@ public class ReviewsMappingsTest {
 	@Resource
 	private TestEntityManager entityManager;
 
+	@Resource
+	private CommentRepository commentRepo;
+	
 	@Resource
 	private BookRepository bookRepo;
 
@@ -142,4 +147,39 @@ public class ReviewsMappingsTest {
 		assertThat(book.getDescription(), is("Good book"));
 		assertThat(book.getTitle(), is("LOTR"));
 	}
+	
+	@Test
+	public void removeTagShouldRemoveTag() {
+		Tag fun = tagRepo.save(new Tag("Fun"));
+		Tag boring = tagRepo.save(new Tag("Boring"));
+		Tag exciting = tagRepo.save(new Tag("Exciting"));
+		
+		Book book = bookRepo.save(new Book("LOTR", fun, boring, exciting));
+		long lotrId = book.getId();
+		book.removeTag(boring);
+		
+		entityManager.flush();
+		entityManager.clear();
+
+		book = bookRepo.findOne(lotrId);
+		assertThat(book.getTags(), containsInAnyOrder(fun, exciting));
+		assertThat(book.getTags(), not(hasItem(boring)));
+	}
+	
+
+//	@Test
+//	public void shouldSaveBookToCommentRelationship() {
+//		Book book = bookRepo.save(new Book("Fiction"));
+//		long bookId = book.getId();
+//
+//		Comment comment1 = commentRepo.save(new Comment("Comment", book));
+//
+//		Comment comment2 = commentRepo.save(new Comment("The Hobbit", book));
+//
+//		entityManager.flush();
+//		entityManager.clear();
+//
+//		book = bookRepo.findOne(bookId);
+//		assertThat(book.getComments(), containsInAnyOrder(comment1, comment2));
+//	}
 }
