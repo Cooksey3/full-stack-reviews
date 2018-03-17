@@ -5,8 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -20,7 +18,7 @@ public class BookReviewsController {
 
 	@Resource
 	TagRepository tagRepo;
-	
+
 	@Resource
 	CommentRepository commentRepo;
 
@@ -36,13 +34,13 @@ public class BookReviewsController {
 		model.addAttribute("tags", tagRepo.findAll());
 		return "tagsView";
 	}
-	
+
 	@RequestMapping("/book")
 	public String getOneBook(@RequestParam Long id, Model model) {
 		model.addAttribute("book", bookRepo.findOne(id));
 		return "bookView";
 	}
-	
+
 	@RequestMapping("/tag")
 	public String getOneTag(@RequestParam Long id, Model model) {
 		Tag tag = tagRepo.findOne(id);
@@ -58,7 +56,7 @@ public class BookReviewsController {
 		model.addAttribute("genreModel", genre);
 		return "genreView";
 	}
-	
+
 	@RequestMapping("/add-comment")
 	public String addComment(Long bookId, String comment) {
 		Book targetBook = bookRepo.findOne(bookId);

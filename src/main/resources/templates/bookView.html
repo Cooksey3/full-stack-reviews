@@ -27,18 +27,16 @@
 				<li><a th:href="@{/tag(id=${singleTag.id})}"
 					th:text="|${singleTag.tag}|"></a>
 					<form method="POST">
-						<button th:value="${singleTag.id}" name="id"
-							th:formaction="@{/add-comment}">X</button>
+						<input type="hidden" name="id" th:value="${singleTag.id}"></input>
+						<button th:formaction="@{/delete-tag}" name="delete">X</button>
 					</form></li>
 			</ul>
 			<ul th:each="singleComment: ${book.comments}">
-				<li th:text="${singleComment.comment}"> 
-				</li>
+				<li th:text="${singleComment.comment}"></li>
 			</ul>
 			<div>
 				<form method="POST">
-					<label>Comment:</label>
-					<input type="text" name="comment"></input>
+					<label>Comment:</label> <input type="text" name="comment"></input>
 					<input type="hidden" name="bookId" th:value="${book.id}"></input>
 					<button name="save" th:formaction="@{/add-comment}">Save</button>
 				</form>

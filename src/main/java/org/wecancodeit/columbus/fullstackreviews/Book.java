@@ -30,7 +30,7 @@ public class Book {
 	public Collection<Comment> getComments() {
 		return comments;
 	}
-	
+
 	@ManyToOne
 	private Genre genre;
 
@@ -40,7 +40,7 @@ public class Book {
 	@SuppressWarnings("unused")
 	private Book() {
 	}
-	
+
 	public Genre getGenre() {
 		return genre;
 	}
