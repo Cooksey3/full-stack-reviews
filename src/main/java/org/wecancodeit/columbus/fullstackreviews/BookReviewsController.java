@@ -39,7 +39,7 @@ public class BookReviewsController {
 	
 	@RequestMapping("/book")
 	public String getOneBook(@RequestParam Long id, Model model) {
-		model.addAttribute("bookModel", bookRepo.findOne(id));
+		model.addAttribute("book", bookRepo.findOne(id));
 		return "bookView";
 	}
 	
@@ -64,6 +64,6 @@ public class BookReviewsController {
 		Book targetBook = bookRepo.findOne(bookId);
 		Comment newComment = new Comment(comment, targetBook);
 		commentRepo.save(newComment);
-		return "redirect:/home";
+		return "redirect:/book?id=" + bookId;
 	}
 }

@@ -13,23 +13,27 @@
 <body>
 	<div class="container">
 		<header>
-			<h1 th:text="${bookModel.Title}"></h1>
+			<h1 th:text="${book.Title}"></h1>
 		</header>
 
-		<div class="book" th:each="book: ${bookModel}">
+		<div class="book">
 			<div class="card">
 				<img id="image" th:src="${book.image}"></img>
 				<ul class="review-info">
 					<li id="list-item1"><p th:text="|${book.description}|"></p></li>
 				</ul>
 			</div>
-			<ul th:each="singleTag: ${bookModel.tags}">
+			<ul th:each="singleTag: ${book.tags}">
 				<li><a th:href="@{/tag(id=${singleTag.id})}"
 					th:text="|${singleTag.tag}|"></a>
 					<form method="POST">
 						<button th:value="${singleTag.id}" name="id"
 							th:formaction="@{/add-comment}">X</button>
 					</form></li>
+			</ul>
+			<ul th:each="singleComment: ${book.comments}">
+				<li th:text="${singleComment.comment}"> 
+				</li>
 			</ul>
 			<div>
 				<form method="POST">
