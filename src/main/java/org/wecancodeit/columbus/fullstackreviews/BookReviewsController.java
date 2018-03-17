@@ -64,4 +64,13 @@ public class BookReviewsController {
 		commentRepo.save(newComment);
 		return "redirect:/book?id=" + bookId;
 	}
+	
+	@RequestMapping("/delete-tag")
+	public String deleteTag(Long bookId, Long tagId) {
+		Book targetBook = bookRepo.findOne(bookId);
+		Tag targetTag = tagRepo.findOne(tagId);
+		targetBook.removeTag(targetTag);
+		bookRepo.save(targetBook);
+		return "redirect:/book?id=" + bookId;
+	}
 }

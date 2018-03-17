@@ -27,7 +27,8 @@
 				<li><a th:href="@{/tag(id=${singleTag.id})}"
 					th:text="|${singleTag.tag}|"></a>
 					<form method="POST">
-						<input type="hidden" name="id" th:value="${singleTag.id}"></input>
+						<input type="hidden" name="bookId" th:value="${book.id}"></input>
+						<input type="hidden" name="tagId" th:value="${singleTag.id}"></input>
 						<button th:formaction="@{/delete-tag}" name="delete">X</button>
 					</form></li>
 			</ul>
