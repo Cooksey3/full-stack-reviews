@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import static java.util.Arrays.asList;
 
 @Entity
@@ -17,6 +20,7 @@ public class Tag {
 	private long id;
 	private String tag;
 
+	@JsonIgnore
 	@ManyToMany
 	private Collection<Book> books;
 

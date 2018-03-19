@@ -31,6 +31,7 @@ public class Book {
 		return comments;
 	}
 
+	@JsonIgnore
 	@ManyToOne
 	private Genre genre;
 
