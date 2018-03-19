@@ -36,7 +36,7 @@ public class ReviewsMappingsTest {
 
 	@Test
 	public void shouldSaveAndLoadBook() {
-		Book book = new Book("LOTR");
+		Book book = new Book("LOTR", null, null, null);
 		book = bookRepo.save(book);
 
 		long bookId = book.getId();
@@ -90,9 +90,9 @@ public class ReviewsMappingsTest {
 		Genre genre = genreRepo.save(new Genre("Fiction"));
 		long genreId = genre.getId();
 
-		Book book1 = bookRepo.save(new Book("LOTR", genre));
+		Book book1 = bookRepo.save(new Book("LOTR", null, null, genre));
 
-		Book book2 = bookRepo.save(new Book("The Hobbit", genre));
+		Book book2 = bookRepo.save(new Book("The Hobbit", null, null, genre));
 
 		entityManager.flush();
 		entityManager.clear();
@@ -106,9 +106,9 @@ public class ReviewsMappingsTest {
 		Tag tag = tagRepo.save(new Tag("Fiction"));
 		long tagId = tag.getId();
 
-		Book book1 = bookRepo.save(new Book("LOTR", tag));
+		Book book1 = bookRepo.save(new Book("LOTR", null, null, null));
 
-		Book book2 = bookRepo.save(new Book("The Hobbit", tag));
+		Book book2 = bookRepo.save(new Book("The Hobbit", null, null, null));
 
 		entityManager.flush();
 		entityManager.clear();
@@ -122,7 +122,7 @@ public class ReviewsMappingsTest {
 		Tag fun = tagRepo.save(new Tag("Fun"));
 		Tag boring = tagRepo.save(new Tag("Boring"));
 
-		Book book = bookRepo.save(new Book("LOTR", fun, boring));
+		Book book = bookRepo.save(new Book("LOTR", null, null, null));
 		long lotrId = book.getId();
 
 		entityManager.flush();
@@ -137,7 +137,7 @@ public class ReviewsMappingsTest {
 		Tag tag1 = tagRepo.save(new Tag("Fun"));
 		Tag tag2 = tagRepo.save(new Tag("Gripping"));
 		Genre genre = genreRepo.save(new Genre("Fiction"));
-		Book book = bookRepo.save(new Book("LOTR", "Good book", genre, tag1, tag2));
+		Book book = bookRepo.save(new Book("LOTR", "Good book", null, genre));
 
 		entityManager.flush();
 		entityManager.clear();
@@ -154,9 +154,8 @@ public class ReviewsMappingsTest {
 		Tag boring = tagRepo.save(new Tag("Boring"));
 		Tag exciting = tagRepo.save(new Tag("Exciting"));
 		
-		Book book = bookRepo.save(new Book("LOTR", fun, boring, exciting));
+		Book book = bookRepo.save(new Book("LOTR", null, null, null));
 		long lotrId = book.getId();
-		book.removeTag(boring);
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -165,21 +164,4 @@ public class ReviewsMappingsTest {
 		assertThat(book.getTags(), containsInAnyOrder(fun, exciting));
 		assertThat(book.getTags(), not(hasItem(boring)));
 	}
-	
-
-//	@Test
-//	public void shouldSaveBookToCommentRelationship() {
-//		Book book = bookRepo.save(new Book("Fiction"));
-//		long bookId = book.getId();
-//
-//		Comment comment1 = commentRepo.save(new Comment("Comment", book));
-//
-//		Comment comment2 = commentRepo.save(new Comment("The Hobbit", book));
-//
-//		entityManager.flush();
-//		entityManager.clear();
-//
-//		book = bookRepo.findOne(bookId);
-//		assertThat(book.getComments(), containsInAnyOrder(comment1, comment2));
-//	}
 }

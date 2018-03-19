@@ -24,7 +24,6 @@ public class Book {
 	@Lob
 	private String description;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "book")
 	private Collection<Comment> comments;
 
@@ -66,7 +65,6 @@ public class Book {
 		return image;
 	}
 
-	@JsonIgnore
 	@ManyToMany(mappedBy = "books")
 	private Collection<Tag> tags;
 
