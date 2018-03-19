@@ -1,8 +1,6 @@
 package org.wecancodeit.columbus.fullstackreviews;
 
-import static java.util.Arrays.asList;
 import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +9,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Book {
@@ -24,6 +24,7 @@ public class Book {
 	@Lob
 	private String description;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "book")
 	private Collection<Comment> comments;
 
@@ -34,44 +35,23 @@ public class Book {
 	@ManyToOne
 	private Genre genre;
 
-	@ManyToMany
-	private Collection<Tag> tags;
-
-	@SuppressWarnings("unused")
-	private Book() {
+	public String getDescription() {
+		return description;
 	}
 
 	public Genre getGenre() {
 		return genre;
 	}
 
-	public Book(String title) {
-		this.title = title;
+	@SuppressWarnings("unused")
+	private Book() {
 	}
 
-	public Book(String title, Genre genre) {
-		this.title = title;
-		this.genre = genre;
-	}
-
-	public Book(String title, Tag... tags) {
-		this.title = title;
-		this.tags = new HashSet<>(asList(tags));
-	}
-
-	public Book(String title, String description, Genre genre, Tag... tags) {
-		this.title = title;
-		this.description = description;
-		this.genre = genre;
-		this.tags = new HashSet<>(asList(tags));
-	}
-
-	public Book(String title, String image, String description, Genre genre, Tag... tags) {
+	public Book(String title, String image, String description, Genre genre) {
 		this.title = title;
 		this.description = description;
 		this.genre = genre;
 		this.image = image;
-		this.tags = new HashSet<>(asList(tags));
 	}
 
 	public long getId() {
@@ -85,6 +65,10 @@ public class Book {
 	public String getImage() {
 		return image;
 	}
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "books")
+	private Collection<Tag> tags;
 
 	public Collection<Tag> getTags() {
 		return tags;
@@ -104,14 +88,6 @@ public class Book {
 			return false;
 		}
 		return id == ((Book) obj).id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void removeTag(Tag tag) {
-		tags.remove(tag);
 	}
 
 }

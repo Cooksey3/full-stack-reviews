@@ -23,19 +23,20 @@
 					<li id="list-item1"><p th:text="|${book.description}|"></p></li>
 				</ul>
 			</div>
-			<ul th:each="singleTag: ${book.tags}">
-				<li><a th:href="@{/tag(id=${singleTag.id})}"
-					th:text="|${singleTag.tag}|"></a>
-					<form method="POST">
-						<input type="hidden" name="bookId" th:value="${book.id}"></input>
-						<input type="hidden" name="tagId" th:value="${singleTag.id}"></input>
-						<button th:formaction="@{/delete-tag}" name="delete">X</button>
-					</form></li>
-			</ul>
+			<div class="tags" th:each="tag: ${book.tags}">
+				<p class="tag" th:text="|${tag.tag}|" />
+				<input type="hidden" name="tagId" th:value="${tag.id}" />
+				<button class="deleteButton"
+					th:attr="data-remove-id=${book.id}, data-tag-id=${tag.id}">Delete</button>
+			</div>
 			<ul th:each="singleComment: ${book.comments}">
 				<li th:text="${singleComment.comment}"></li>
 			</ul>
+
 			<div>
+				<form method="POST">
+					<button th:formaction="@{/add-tag}" name="add">X</button>
+				</form>
 				<form method="POST">
 					<label>Comment:</label> <input type="text" name="comment"></input>
 					<input type="hidden" name="bookId" th:value="${book.id}"></input>
@@ -49,5 +50,6 @@
 			<p>Copyright ©Forever</p>
 		</footer>
 	</div>
+	<script src="./js/tag-modifier.js"></script>
 </body>
 </html>
