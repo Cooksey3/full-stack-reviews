@@ -19,3 +19,29 @@ removeButton.forEach(button => {
 		
 	});
 });
+
+const addBtn = document.querySelector('.addButton');
+
+addBtn.addEventListener('click', function(event) {
+	event.preventDefault();
+	const tag = document.querySelector('#tagInput').value;
+	const bookId = addBtn.dataset.bookId;
+
+	xhr.open('POST', 'http://localhost:8080/add-tag?bookId=' + bookId + '&addTag='+ tag, true);
+	xhr.send();
+	
+	const tagList = document.querySelector(".tags");
+	const deleteButton = document.querySelector(".deleteButton");
+	appendElement(tagList, createElement('p', tag));
+	appendElement(tagList, createElement('button', deleteButton));
+});
+
+function createElement (elem, textValue) {
+	const newElem = document.createElement(elem);
+	newElem.innerText = textValue;
+	return newElem;
+}
+
+function appendElement(parent, child) {
+	parent.appendChild(child);
+}

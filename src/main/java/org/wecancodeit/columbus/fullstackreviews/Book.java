@@ -24,6 +24,7 @@ public class Book {
 	@Lob
 	private String description;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "book")
 	private Collection<Comment> comments;
 

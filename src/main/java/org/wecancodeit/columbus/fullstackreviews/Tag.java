@@ -48,6 +48,10 @@ public class Tag {
 	public void deleteBook(Book book) {
 		books.remove(book);
 	}
+	
+	public void addBook(Book book) {
+		books.add(book);
+	}
 
 	@Override
 	public int hashCode() {

@@ -15,12 +15,29 @@ public class BookReviewsRestController {
 	private TagRepository tagRepo;
 
 	@RequestMapping("/remove-tag")
-	public Book DeleteTagFromThisBook(Long bookId, Long tagId) {
+	public Book deleteTagFromThisBook(Long bookId, Long tagId) {
 		Book targetBook = bookRepo.findOne(bookId);
 		Tag thisTag = tagRepo.findOne(tagId);
 		thisTag.deleteBook(targetBook);
 		tagRepo.save(thisTag);
 
+		return targetBook;
+	}
+	
+	@RequestMapping("/add-tag")
+	public Book addTagToBook(Long bookId, String addTag) {
+		Book targetBook = bookRepo.findOne(bookId);
+		if (tagRepo.findByTag(addTag) != null) {
+			Tag newTag = new Tag(addTag, targetBook);
+			newTag.addBook(targetBook);
+			return targetBook;
+		}
+		
+		Tag newTag = new Tag(addTag);
+		tagRepo.save(newTag);
+		newTag.addBook(targetBook);
+		tagRepo.save(newTag);
+		
 		return targetBook;
 	}
 	

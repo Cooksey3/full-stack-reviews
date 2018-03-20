@@ -35,7 +35,15 @@
 
 			<div>
 				<form method="POST">
-					<button th:formaction="@{/add-tag}" name="add">X</button>
+					<div>
+						<label>Tag:</label> <input id="tagInput" type="text" />
+					</div>
+					<div>
+						<input type="hidden" name="bookId" th:value="${book.id}" />
+					</div>
+					<div>
+						<button class="addButton" th:attr="data-book-id=${book.id}">Add</button>
+					</div>
 				</form>
 				<form method="POST">
 					<label>Comment:</label> <input type="text" name="comment"></input>
